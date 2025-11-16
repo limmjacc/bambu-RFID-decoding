@@ -1,0 +1,102 @@
+Filetype: Flipper NFC device
+
+Version: 4
+# Device type can be ISO14443-3A, ISO14443-3B, ISO14443-4A, ISO14443-4B, ISO15693-3, FeliCa, NTAG/Ultralight, Mifare Classic, Mifare Plus, Mifare DESFire, SLIX, ST25TB, NTAG4xx, Type 4 Tag, EMV
+
+Device type: Mifare Classic
+# UID is common for all formats
+UID: 95 DA B1 02  // unique tag identifier, used as a base for key derivation in encrypted variants
+
+# ISO14443-3A specific data
+ATQA: 00 04  // answer to request, indicates Mifare Classic compatibility
+SAK: 08  // select acknowledge (confirms 1K memory size)
+
+# Mifare Classic specific data
+Mifare Classic type: 1K  // 1024 bytes total (16 sectors x 64 bytes each)
+Data format version: 2
+
+# Mifare Classic blocks, '??' means unknown data
+Block 0: 95 DA B1 02 FC 08 04 00 04 3A 7C DE B1 8D F3 90   // material variant, A01-K1\0\0, tray info index, specific material variant code
+Block 1: 41 30 31 2D 4B 31 00 00 47 46 41 30 31 00 00 00   // unique material ID, GFA01\0\0\0, internal Bambu ID for this filament type
+Block 2: 50 4C 41 00 00 00 00 00 00 00 00 00 00 00 00 00   // Filament Type, PLA, base material, PLA (Polylactic Acid)
+
+Block 3: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??   // access bits 87 87 87 69, configures read/write permissions
+
+Block 4: 50 4C 41 20 4D 61 74 74 65 00 00 00 00 00 00 00   // Detailed Filament Type, PLA Matte, Sub-type: Matte finish PLA
+Block 5: 00 00 00 FF E8 03 00 00 00 00 E0 3F 00 00 00 00   // color (black, opaque) R=0 G=0 B=0 A=255 (FF), spool weight 1000g (E8 03), filament diameter 1.75mm (E0 3F)
+Block 6: 37 00 08 00 00 00 00 00 E6 00 BE 00 00 00 00 00
+
+Block 7: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??   // access bits 87 87 87 69, configures read/write permissions
+
+Block 8: A4 38 88 13 E8 03 E8 03 CD CC 4C 3F CD CC 4C 3E
+Block 9: 82 1B E9 C3 D8 F9 4E 49 B8 D4 0D 22 37 66 F0 2B   // Tray UID/Serial, Binary, Likely a unique spool serial number or hash derived from UID
+Block 10: 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00  // spool width, 1536um / 1.536mm, uint16 LE, Possible spool flange or hub width, field partially unknown
+
+Block 11: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  // access bits 87 87 87 69, configures read/write permissions
+
+Block 12: 32 30 32 35 5F 30 34 5F 32 35 5F 31 36 5F 35 37  // Production Date/Time, 2025_04_25_16_57, Manufacturing timestamp: April 25, 2025, at 4:57 PM
+Block 13: 32 35 5F 30 34 5F 32 35 5F 31 36 00 00 00 00 00  // Unknown (Batch/Expiry?), 25_04_25_16\0\0\0\0\0, Possibly a truncated date code, batch ID, or expiry snippet
+Block 14: 00 00 00 00 3B 01 00 00 00 00 00 00 00 00 00 00
+
+Block 15: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  // access bits 87 87 87 69, configures read/write permissions
+
+// unused zero padding, read/write permission blocks
+Block 16: 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 17: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 18: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 19: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 21: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 22: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 23: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 24: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 25: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 26: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 27: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 28: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 29: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 31: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 32: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 33: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 34: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 35: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 36: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 37: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 38: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 39: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+
+// RSA-2048 signature (768 bytes of data blocks + trailers)
+// This is binary "noise" in the dump
+// Cryptographic hash of all prior data
+Block 40: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 41: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Block 42: 86 CB F2 D4 8B 20 5A 81 78 39 5C 0C 27 B1 21 E3
+Block 43: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 44: F8 62 0D B6 58 08 33 6E 8A 00 8A B3 43 0B 7F 63
+Block 45: 50 6A 37 55 32 2C 1A C3 9B A7 6A 1E 82 D2 A6 DA
+Block 46: 14 9E 9B 4C 66 AB 2D F1 32 8E BF 95 DB 74 36 EA
+Block 47: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 48: 2B E3 C2 DF 6A AE DC C4 2B 44 1E 2D C4 B6 EF 74
+Block 49: 87 70 AF 4A 93 1E 20 B5 8F D4 A6 43 F3 7E C6 77
+Block 50: 91 6E 71 69 68 65 B8 D0 1E A9 1D B0 02 1B 38 64
+Block 51: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 52: C3 33 87 5A C6 D7 6C C8 6E ED 0A 4C 50 65 E2 A6
+Block 53: 84 91 AA 46 25 25 78 89 B4 44 6C 54 97 22 00 74
+Block 54: DC 7C 70 53 BA 41 C0 3E 11 99 CE 80 F0 C3 16 C2
+Block 55: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 56: AC E2 34 C1 EF 9A 07 34 C8 AD 20 3E 95 CE 4B CA
+Block 57: 5F 7B 30 66 89 C1 A1 B4 3F E6 E4 22 B3 B4 08 6C
+Block 58: 7D F4 74 BC 64 9B FD 35 5B 11 76 B5 77 BA 75 EF
+Block 59: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+Block 60: FE 9C 57 B4 FB 74 F7 9C 38 EA 9F 86 89 9D 96 02
+Block 61: 5E 13 52 6F E6 EB A0 A5 07 7E 70 35 01 35 75 63
+Block 62: 56 D4 D3 39 F0 96 44 B8 32 01 6D 16 EE DF A3 DB
+Block 63: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
+
+
+// Filament Spool Summary:
+
+Filament Profile: 1 kg spool of PLA Matte Black, 1.75 mm diameter. General printing; dry at 55C for 8 hours
+Print Config: Nozzle 190-230C, bed type 0 (adjust in slicer). Produced on 2025-04-25 at 16:57 / 4:57pm
+Full Dump: Sectors 0-3 hold ~80% of useful info; the rest is security/padding
