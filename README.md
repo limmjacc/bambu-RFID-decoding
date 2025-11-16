@@ -80,3 +80,5 @@ Block 12: 32 30 32 35 5F 30 34 5F 32 35 5F 31 36 5F 35 37  # 2025_04_25_16_57
 ```
 
 ---
+
+Inspiration from: https://github.com/Bambu-Research-Group/RFID-Tag-Guide
