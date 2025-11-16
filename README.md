@@ -1,6 +1,6 @@
-# Bambu PLA Matte Black — NFC Spool Profile
+# Bambu PLA Matte Black - NFC Spool Profile
 
-`Bambu_PLAMatte_Black.nfc` tag dump. This file extracts the human-readable metadata and key settings stored on the filament spool's NFC tag so you can quickly see recommended print settings, spool info, and security notes.
+`Bambu_PLAMatte_Black.nfc` tag dump. This file extracts the human-readable metadata and key settings stored on the filament spool's NFC tag so you can quickly see recommended print settings, spool info, and security notes. Although this file is NFC data, it still classifies as RFID. All NFC devices are HF-RFID devices, but not all RFID devices are NFC devices.
 
 ---
 
@@ -19,6 +19,8 @@
 ## Overview
 
 This dump contains the NFC data stored on a Bambu filament spool tag. Sectors 0–3 contain the bulk of the human-readable spool metadata (material, color, diameter, spool weight, recommended drying and temperature ranges). Later sectors are mainly padding, permission trailers, and a cryptographic signature block used by the printer ecosystem to validate the tag.
+
+This tag is authentic Bambu structure. To clone or reuse on another spool, you'd need to replicate the UID, data, and signature which is currently impossible without hacking the printer firmware or using community tools. Empty sectors suggest a basic config; advanced tags might use more space.
 
 The information below is extracted from the blocks in Sector 0–3 and the helpful summary lines included in the dump.
 
