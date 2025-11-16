@@ -22,6 +22,8 @@ This dump contains the NFC data stored on a Bambu filament spool tag. Sectors 0â
 
 This tag is authentic Bambu structure. To clone or reuse on another spool, you'd need to replicate the UID, data, and signature which is currently impossible without hacking the printer firmware or using community tools. Empty sectors suggest a basic config; advanced tags might use more space.
 
+You can't write custom NFC tags for Bambu Lab filament spools because the required RSA-2048 digital signature authenticates the data using the company's secret private key, which is computationally infeasible to crack or forge on classical computers due to the immense factorization challenge. Even with emerging quantum computing advancements, such as Shor's algorithm, breaking a 2048-bit key would demand millions of error-corrected qubits and fault-tolerant systems that don't yet exist as of 2025, leaving third-party tags unverifiable by the printer.
+
 The information below is extracted from the blocks in Sector 0â€“3 and the helpful summary lines included in the dump.
 
 ---
