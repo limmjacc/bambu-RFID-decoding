@@ -103,8 +103,11 @@ Block 61: 5E 13 52 6F E6 EB A0 A5 07 7E 70 35 01 35 75 63
 Block 62: 56 D4 D3 39 F0 96 44 B8 32 01 6D 16 EE DF A3 DB
 Block 63: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??
 
-# Useful information
-# Filament Spool Summary
+########################################
+SUMMARY
+########################################
+
+# Useful information and Filament Spool Summary
 Filament Profile: 1 kg spool of PLA Matte Black, 1.75 mm diameter. General printing; dry at 55C for 8 hours
 Print Config: Nozzle 190-230C, bed type 0 (adjust in slicer). Produced on 2025-04-25 at 16:57 / 4:57pm
 Full Dump: Sectors 0-3 hold ~80% of useful info; the rest is security/padding
