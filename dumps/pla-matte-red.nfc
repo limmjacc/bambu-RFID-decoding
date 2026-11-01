@@ -1,0 +1,120 @@
+Filetype: Flipper NFC device
+Version: 4
+
+########################################
+# TAG Info
+########################################
+
+# Device type can be ISO14443-3A, ISO14443-3B, ISO14443-4A, ISO14443-4B, ISO15693-3, FeliCa, NTAG/Ultralight, Mifare Classic, Mifare Plus, Mifare DESFire, SLIX, ST25TB, NTAG4xx, Type 4 Tag, EMV
+Device type: Mifare Classic
+# UID is common for all formats
+UID: 15 C4 C9 A3  # unique tag identifier, used as a base for key derivation in encrypted variants
+# ISO14443-3A specific data
+ATQA: 00 04  # answer to request, indicates Mifare Classic compatibility
+SAK: 08  # select acknowledge (confirms 1K memory size)
+# Mifare Classic specific data
+Mifare Classic type: 1K  # 1024 bytes total (16 sectors x 64 bytes each)
+Data format version: 2
+
+########################################
+# DATA BLOCKS
+########################################
+
+# Mifare Classic blocks, '??' means unknown data
+
+# Sector 0-3
+# Useful printer information
+Block 0: 15 C4 C9 A3 BB 08 04 00 04 67 91 FA E9 CD B5 90   # UID (15 C4 C9 A3), BCC (check byte), SAK/ATQA and manufacturer data
+Block 1: 41 30 31 2D 52 31 00 00 47 46 41 30 31 00 00 00   # tray info index, variant ID "A01-R1" (bytes 0-7), material ID "GFA01" (bytes 8-15), internal Bambu IDs for this filament type
+Block 2: 50 4C 41 00 00 00 00 00 00 00 00 00 00 00 00 00   # Filament Type, PLA, base material
+Block 3: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??   # sector 0 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 4: 50 4C 41 20 4D 61 74 74 65 00 00 00 00 00 00 00   # detailed filament Type, PLA Matte
+Block 5: DE 43 43 FF E8 03 00 00 00 00 E0 3F 00 00 00 00   # color R=222 G=67 B=67 A=255 (DE 43 43 FF), spool weight 1000g (E8 03), filament diameter 1.75mm (00 00 E0 3F)
+Block 6: 37 00 08 00 00 00 00 00 E6 00 BE 00 00 00 00 00   # drying temp 55C (37 00), drying time 8h (08 00), bed temp type 0 (00 00), bed temp 0C (00 00), nozzle temp range 190C to 230C (max E6 00, min BE 00)
+Block 7: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??   # sector 1 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 8: 88 13 D0 07 E8 03 E8 03 9A 99 19 3F CD CC 4C 3E   # X-Cam Info, Binary, Internal AMS calibration data (88 13 D0 07 E8 03 E8 03 9A 99 19 3F), possible Nozzle Diameter 0.2mm (CD CC 4C 3E)
+Block 9: 63 4B 17 18 7A AC 4B D9 BC B2 DA AB 46 6B EA DD   # Tray UID/Serial, Binary, Likely a unique spool serial number or hash derived from UID
+Block 10: 00 00 00 00 00 06 00 00 00 00 00 00 00 00 00 00  # uint16 LE at bytes 4-5 = 1536 (00 06), labelled spool width upstream but varies between spools, field partially unknown
+Block 11: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 2 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 12: 32 30 32 35 5F 30 38 5F 32 33 5F 31 35 5F 33 35  # Production Date/Time, 2025_08_23_15_35, Manufacturing timestamp: August 23, 2025, at 3:35 PM
+Block 13: 32 35 5F 30 38 5F 32 33 5F 31 35 00 00 00 00 00  # Unknown (Batch/Expiry?), "25_08_23_15", Possibly a truncated date code, batch ID, or expiry snippet, format varies between spools
+Block 14: 00 00 00 00 3B 01 00 00 00 00 00 00 00 00 00 00  # filament length 315m, uint16 LE at bytes 4-5 (3B 01), meaning uncertain upstream
+Block 15: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 3 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+# Sector 4-9
+# color info (blocks 16-17), otherwise unused zero padding, read/write permission blocks
+Block 16: 02 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  # format ID (02 00), color count (01 00), second color (00 00 00 00, stored reversed), colors: #DE4343FF
+Block 17: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unknown, 01 00 seen only on dual-color spools
+Block 18: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 19: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 4 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 21: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 22: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 23: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 5 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 24: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 25: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 26: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 27: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 6 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 28: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 29: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 31: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 7 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 32: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 33: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 34: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 35: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 8 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 36: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 37: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 38: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 39: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 9 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+# Sector 10-15
+# RSA-2048 signature (256 bytes in 16 data blocks, after a header block)
+# binary noise in the dump, cryptographic signature over the tag data
+# also contains read/write permission blocks
+Block 40: 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # signature region header, unknown, 01 00 on every dump
+Block 41: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  # unused, zero padding
+Block 42: 7E C2 42 7D A7 DC 8A B7 66 C5 9C 24 42 92 37 BC  # RSA-2048 signature, bytes 0-15 of 256
+Block 43: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 10 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 44: 81 71 E2 45 CF BA 3B 84 7D 8C AD DE D5 A2 00 67  # RSA-2048 signature, bytes 16-31 of 256
+Block 45: 88 F9 7D B2 0C 31 CA 77 37 69 D4 40 E5 B9 26 9B  # RSA-2048 signature, bytes 32-47 of 256
+Block 46: 3F D8 2F 71 69 13 9E 43 C0 38 A5 8D 7D 71 6D 68  # RSA-2048 signature, bytes 48-63 of 256
+Block 47: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 11 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 48: 2D 59 2A 28 D3 DC 11 AE A7 73 54 77 49 6C 57 EC  # RSA-2048 signature, bytes 64-79 of 256
+Block 49: BC E8 1A 8A 47 4F 38 62 A0 9E 71 8C 68 C4 B7 F0  # RSA-2048 signature, bytes 80-95 of 256
+Block 50: AB C8 E7 9B BA 34 12 78 59 71 C7 3C AF 72 0C 8C  # RSA-2048 signature, bytes 96-111 of 256
+Block 51: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 12 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 52: 93 65 D6 56 C6 98 BA F4 1A 99 85 7F FF 43 33 BA  # RSA-2048 signature, bytes 112-127 of 256
+Block 53: 3E 69 62 C6 B6 8E 69 37 7E E4 BC E5 84 67 9B 17  # RSA-2048 signature, bytes 128-143 of 256
+Block 54: DA 60 93 4C B2 04 82 04 1F A7 3C 42 63 97 8C 68  # RSA-2048 signature, bytes 144-159 of 256
+Block 55: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 13 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 56: A2 21 F3 70 5F C3 E7 77 C4 BC 64 5C A6 AA 7E E1  # RSA-2048 signature, bytes 160-175 of 256
+Block 57: CA 5C B1 EF B1 8F DC D0 1E 99 D9 9B 6F 6A 27 53  # RSA-2048 signature, bytes 176-191 of 256
+Block 58: 22 4D 11 58 15 0B 97 9D C4 F0 37 26 1A 7B 29 08  # RSA-2048 signature, bytes 192-207 of 256
+Block 59: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 14 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+Block 60: A7 ED 94 73 BB 6C 5E E9 79 6C 62 F4 0A 85 F9 3C  # RSA-2048 signature, bytes 208-223 of 256
+Block 61: 3F 29 07 3B A1 7C 95 E6 DF C6 C9 CF 3E BB DB 55  # RSA-2048 signature, bytes 224-239 of 256
+Block 62: 81 1F E9 C7 8A 88 82 67 09 FE B2 69 70 55 8B 02  # RSA-2048 signature, bytes 240-255 of 256
+Block 63: ?? ?? ?? ?? ?? ?? 87 87 87 69 ?? ?? ?? ?? ?? ??  # sector 15 trailer: keys unknown (??), access bits 87 87 87 69, configures read/write permissions
+
+########################################
+# SUMMARY
+########################################
+
+# Useful information and Filament Spool Summary
+# Filament Profile: 1 kg spool of PLA Matte Red, 1.75 mm diameter. Dry at 55C for 8 hours
+# Print Config: Nozzle 190-230C, bed type 0 (adjust in slicer). Produced on 2025-08-23 at 15:35 / 3:35pm
+# Full Dump: Sectors 0-3 hold ~80% of useful info; the rest is security/padding
